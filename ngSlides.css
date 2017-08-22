@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+* {
+  font-family: 'Roboto', monospace;
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  min-height: 100%;
+}
+.directive-fullscreen {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  top: 0;
+}
+.directive {
+  position: relative;
+  background-color: #ddd;
+  border: 1px solid black;
+  overflow: hidden;
+  height: 760px;
+}
+.slides {
+  height: 100%;
+  width: 100%;
+}
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.slide-buttons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 10px;
+  text-align: center;
+  user-select: none;
+}
+.slide-button {
+  display: inline-block;
+  font-size: 25px;
+  cursor: pointer;
+  margin: 0 30px;
+}
+.active {
+  color: #666;
+}
+.slide-button:active {
+  color: #666;
+}
+.play {
+  display: none;
+}
+.todo h1 {
+  text-align: center;
+  margin-botton: 10px;
+}
+.todo {
+  padding: 40px;
+}
+.slide-1 {
+  width: 100%;
+}
+.slide-1 .title {
+  color: #7E57C2;
+  font-size: 5em;
+  text-align: center;
+  padding-top: 300px;
+}
+.slide-1 .content {
+  position: relative;
+  margin: auto;
+  padding-top: 20px;
+  padding-left: 180px;
+  width: 700px;
+  font-size: 2em;
+  color: black;
+}
+.slide-2 {
+  width: 100%;
+}
+.slide-2 .title {
+  text-align: center;
+  padding-top: 100px;
+  font-size: 3em;
+}
+.slide-2 .content {
+  margin: auto;
+  width: 300px;
+  padding-top: 20px;
+  padding-left: 40px;
+  font-size: 2em;
+}
+.slide-3 {
+  width: 100%;
+}
+.slide-3 .title {
+  text-align: center;
+  padding-top: 100px;
+  font-size: 3em;
+}
+.slide-3 .content {
+  width: 500px;
+  margin: auto;
+  padding-top: 20px;
+}
+.slide-3 .content pre {
+  margin-top: 20px;
+  padding: 20px 10px;
+  font-size: 1em;
+  border: 1px solid black;
+  background-color: white;
+  overflow: auto;
+}
+.slide-4 {
+  width: 100%;
+}
+.slide-4 .title {
+  text-align: center;
+  padding-top: 100px;
+  font-size: 3em;
+}
+.slide-4 .content {
+  width: 500px;
+  margin: auto;
+  padding-top: 20px;
+}
+.slide-4 .content pre {
+  margin-top: 20px;
+  padding: 20px 10px;
+  font-size: 1em;
+  border: 1px solid black;
+  background-color: white;
+  overflow: auto;
+}
+.title-slide {
+  width: 80%;
+  margin: 10%;
+  text-align: center;
+}
+.title-slide .title {
+  padding: 20px;
+  text-align: center;
+  margin-top: 200px;
+  font-size: 5em;
+}
+.title-slide .sub-title {
+  margin-top: 10px;
+  padding: 20px;
+  text-align: center;
+  font-size: 2em;
+}
+.content-slide {
+  margin: 2%;
+  width: 96%;
+}
+.content-slide .title {
+  padding: 10px;
+  font-size: 3em;
+}
+.content-slide .content {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 2em;
+}
+.two-columns-slide {
+  margin: 2%;
+  width: 96%;
+}
+.two-columns-slide .title {
+  padding: 10px;
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+.two-columns-slide .col-1 {
+  padding: 10px;
+  float: left;
+  font-size: 1.5em;
+  width: 46%;
+}
+.two-columns-slide .col-2 {
+  padding: 10px;
+  float: right;
+  font-size: 1.5em;
+  width: 46%;
+}
+.author {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+.bordered {
+  border: 1px solid black;
+}
+.max-height {
+  height: 70%;
+}
+pre {
+  margin-top: 20px;
+  padding: 20px 10px;
+  font-size: 0.8em;
+  border: 1px solid black;
+  background-color: white;
+  overflow: auto;
+}
+.title-slide .title {
+  color: #7E57C2;
+}
+
