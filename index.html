@@ -2,26 +2,41 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="description" content="Angular component - slides/presentation">
+    <meta name="author" content="Krol22">
     <title>ngSlides</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="ngSlides.css"/>
 </head>
-<body>
-    <ng-slides="config">
-        <div ng-slide>
-            Test-1
-        </div>
-        <div ng-slide>
-            Test-2
-        </div>
-        <div ng-slide>
-            Test-3
-        </div>
-        <div ng-slide>
-            Test-4
-        </div>
-        <div ng-slide>
-            Test-5
-        </div>
-    </ng-slides>
+
+<body ng-app="slidesDemo">
+    <main ng-controller="demoController">
+        <div ng-slides="config">
+            <ng-slide>
+                Test-1
+            </ng-slide>
+            <ng-slide>
+                Test-2
+            </ng-slide>
+            <ng-slide>
+                Test-3
+            </ng-slide>
+            <ng-slide>
+                Test-4
+            </ng-slide>
+            <ng-slide>
+                Test-5
+            </ng-slide>
+        </div ng-slides>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="ngSlides.js"></script>
+    <script src="demo/main.js"></script>
 </body>
 
 </html>
