@@ -1,34 +1,5 @@
 (function(){
 
-  const animations = {
-    fade: {
-      animationEnter: {
-        transitions: [
-          { css: 'opacity 0.3s ease-in-out 0.5s', from: 0, to: 1 },
-          { css: 'left 0.8s ease-in-out', from: '1700px', to: '0px' }
-        ],
-      },
-      animationLeave: {
-        transitions: [
-          { css: 'opacity 0.3s ease-in-out', from: 1, to: 0 },
-         { css: 'left 0.8s ease-in-out', from: '0px', to: '-1700px' }
-        ],
-      }
-    },
-    slide: {
-      animationEnter: {
-        transitions: [
-          { css: 'left 0.8s ease-in-out', from: '1700px', to: '0px' }
-        ],
-      },
-      animationLeave: {
-        transitions: [
-         { css: 'left 0.8s ease-in-out', from: '0px', to: '-1700px' }
-        ],
-      }
-    }
-  };
-
   let config = {
     repeat: true,
     timeout: 6000,

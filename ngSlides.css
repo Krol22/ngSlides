@@ -19,7 +19,7 @@ body {
   background-color: #ddd;
   border: 1px solid black;
   overflow: hidden;
-  height: 760px;
+  height: 500px;
 }
 .slides {
   height: 100%;
