@@ -3,7 +3,7 @@ angular.module('slidesDemo', ['ngSlides'])
 
         $scope.config = {
             repeat: false,
-            timeout: 10000,
+            timeout: 2000,
             animation: 'fade',
         };
 

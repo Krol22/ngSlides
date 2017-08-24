@@ -4,6 +4,12 @@
   padding: 0;
   margin: 0;
 }
+
+.test {
+    height: 300px;
+    background-color: #fff;
+}
+
 html,
 body {
   min-height: 100%;
