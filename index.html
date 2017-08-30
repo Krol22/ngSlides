@@ -14,26 +14,56 @@
 
 <body ng-app="slidesDemo">
     <main ng-controller="demoController">
-        <div class="directive" ng-slides="config">
-            <ng-slide>
-                <div class="test"></div>
-                Test-1
+        <div class="directive" ng-slides="config" ng-slides-api="testApi">
+            <ng-slide class="title-slide">
+                <div class="title"> Ng-slides </div>
+                <div class="sub-title"> Angular 1.x module for presentations </div>
             </ng-slide>
-            <ng-slide>
-                Test-2
+            <ng-slide class="content-slide">
+                <div class="title">Supported animations</div>
+                <div class="content">
+                     <ul>
+                         <li>fade</li>
+                         <li>slide-left</li>
+                         <li>#tobedeveloped</li>
+                         <li>custom slides</li>
+                     </ul>
+                 </div>
             </ng-slide>
-            <ng-slide>
-                Test-3
+            <ng-slide class="content-slide">
+                <div class="title">Custom animations (1.)</div>
+                <div class="content">Create animation object
+                    <pre>
+                        animationName : {
+                            animationEnter : {
+                                transitions: [
+                                  { css: 'opacity 0.9s ease-in-out', from: 0, to: 1 },
+                                ]
+                            },
+                            animationLeave : {
+                                transitions: [
+                                  { css: 'opacity 0.9s ease-in-out', from: 1, to: 0 },
+                                ]
+                            }
+                        }
+                    </pre>
+                </div>
             </ng-slide>
-            <ng-slide>
-                Test-4
-            </ng-slide>
-            <ng-slide>
-                Test-5
+            <ng-slide class="content-slide">
+                <div class="title">Custom animations (2.)</div>
+                <div class="content">Then set this animation as current animation
+                    <pre>let currentAnimation = 'animationName';</pre>
+                </div>
             </ng-slide>
         </div>
 
-        Rest content of the page!
+        <button ng-click="toogleToolbar()"> Toggle bar </button>
+        <button ng-click="testApi.play()"> Play </button>
+        <button ng-click="testApi.pause()"> Pause </button>
+        <button ng-click="testApi.fullscreen()"> Full screen </button>
+        <button ng-click="testApi.loop()"> Loop </button>
+        <button ng-click="testApi.nextSlide()"> Next slide </button>
+        <button ng-click="testApi.prevSlide()"> Previous slide </button>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

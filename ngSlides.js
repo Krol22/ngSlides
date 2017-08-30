@@ -29,7 +29,7 @@ var predeclaredAnimations = {
 
 this.templateString =
     '<div class="slides" ng-transclude></div>' +
-    '<div class="slide-buttons">' +
+    '<div class="ng-slide-buttons" ng-show="config.toolbarVisibility">' +
     '  <div ng-click="prevSlide()" class="slide-button prev-slide"><i class="fa fa-angle-left" aria-hidden="true"></i></div>' +
     '  <div ng-click="fullScreen()" class="slide-button full-screen"><i class="fa fa-window-maximize" aria-hidden="true"></i></div>' +
     '  <div ng-click="play()" class="slide-button play"><i class="fa fa-play" aria-hidden="true"></i></div>' +
@@ -51,6 +51,7 @@ function ngSlides(_interval, _timeout) {
     return {
         scope: {
             config: '=ngSlides',
+            ngSlidesApi: '='
         },
         link: this.ngSlidesController,
         restrict: 'A',
@@ -64,13 +65,18 @@ this.ngSlidesController = function(scope, elem, attr) {
 
     var isPlaying = true;
     var completed = true;
+    var usedButtonsCodes = [
+        39, 37, 32, 70
+    ];
 
-    var nextSlidePromise;
+    var nextSlidePromise, prevKeyCode;
 
     var currentSlide = 0;
-    var repeat = config.repeat,
-        timeout = config.timeout || 6000,
-        animation = config.animation;
+    var animation = config.animation;
+
+    config.timeout = config.timeout || 6000;
+
+    scope.toolbarVisibility = config.toolbarVisibility;
 
     if(animation === 'custom'){
         if(!config.customAnimation)
@@ -78,6 +84,52 @@ this.ngSlidesController = function(scope, elem, attr) {
 
         predeclaredAnimations.push(config.customAnimation)
     }
+
+    elem.attr('tabindex', '0');
+
+    elem.keydown((event) => {
+
+        if($.inArray(event.keyCode, usedButtonsCodes) < 0) {
+            return;
+        }
+
+        event.preventDefault();
+
+        if(event.keyCode == prevKeyCode){
+          return;
+        }
+        prevKeyCode = event.keyCode;
+
+        if(event.keyCode === 39){
+          if(isPlaying) {
+            $interval.cancel(nextSlidePromise);
+            startSlideShow();
+          }
+          goToNextSlide();
+        } else if(event.keyCode === 37){
+          if(isPlaying) {
+            $interval.cancel(nextSlidePromise);
+            startSlideShow();
+          }
+          goToPrevSlide();
+        }
+
+        if(event.keyCode === 32){
+          if(isPlaying) {
+            pause();
+          } else {
+            play();
+          }
+        }
+
+        if(event.keyCode === 70){
+          toggleFullScreen();
+        }
+    });
+
+    elem.keyup((event) => {
+        prevKeyCode = -1;
+    });
 
     var slides = elem.children().find('ng-slide');
     slides = slides.filter(function(index){
@@ -105,7 +157,7 @@ this.ngSlidesController = function(scope, elem, attr) {
             continue;
 
         predeclaredAnimations[animation].animationEnter.transitions.forEach(function(transition) {
-            var property = transition.css.split(' ')[0];  
+            var property = transition.css.split(' ')[0];
             $(slides[index]).css(property, transition.from);
             $(slides[index]).css('transition', transitionEnterCss);
         });
@@ -119,13 +171,20 @@ this.ngSlidesController = function(scope, elem, attr) {
     var nextSlide = elem.find('.next-slide');
     var prevSlide = elem.find('.prev-slide');
     var fullScreen = elem.find('.full-screen');
-    var repeat = elem.find('.repeat');
+    var loopButton = elem.find('.repeat');
+
+    scope.ngSlidesApi.pause = pause;
+    scope.ngSlidesApi.play = play;
+    scope.ngSlidesApi.prevSlide = goToPrevSlide;
+    scope.ngSlidesApi.nextSlide = goToNextSlide;
+    scope.ngSlidesApi.fullscreen = toggleFullScreen;
+    scope.ngSlidesApi.loop = toggleLoop;
 
     scope.prevSlide = goToPrevSlide;
     scope.fullScreen = toggleFullScreen;
     scope.play = play;
     scope.pause = pause;
-    //scope.repeat = repeat;
+    scope.loop = toggleLoop;
     scope.nextSlide = goToNextSlide;
 
     function play(){
@@ -146,12 +205,21 @@ this.ngSlidesController = function(scope, elem, attr) {
         $interval.cancel(nextSlidePromise);
     }
 
+    function toggleLoop() {
+        config.loop = !config.loop;
+        if(config.loop){
+            loopButton.addClass('active');
+        } else {
+            loopButton.removeClass('active');
+        }
+    }
+
     function goToPrevSlide(){
         if(!completed) return;
 
         if(currentSlide !== 0){
             switchToSlide(currentSlide - 1);
-        } else if(config.repeat){
+        } else if(config.loop){
             switchToSlide(slides.length - 1);
         }
     }
@@ -161,7 +229,7 @@ this.ngSlidesController = function(scope, elem, attr) {
 
         if(currentSlide !== slides.length - 1){
             switchToSlide(currentSlide + 1);
-        } else if(config.repeat){
+        } else if(config.loop){
             switchToSlide(0);
         }
     }
@@ -169,6 +237,7 @@ this.ngSlidesController = function(scope, elem, attr) {
     /**** Logic behind changin slides ****/
 
     function switchToSlide(slideNumber){
+
         if(slideNumber > slides.length - 1 || slideNumber < 0)
             throw new Error('No slide with number: ', slideNumber, ' is presented.');
 
@@ -195,7 +264,7 @@ this.ngSlidesController = function(scope, elem, attr) {
             slide.style[property] = transition.to;
         });
 
-        setTimeout(() => {
+        $timeout(() => {
             var maxTimeEnter = 0;
 
             nextSlide.style.transition = transitionEnterCss;
@@ -215,7 +284,7 @@ this.ngSlidesController = function(scope, elem, attr) {
             });
 
 
-            setTimeout(() => {
+            $timeout(() => {
                 currentSlide = slideNumber;
                 completed = true;
             }, maxTimeEnter);
@@ -245,6 +314,7 @@ this.ngSlidesController = function(scope, elem, attr) {
             elem.css('position', 'relative');
             $(document).css('overflow', 'auto');
             elem.removeClass('directive-fullscreen');
+            resize();
         } else {
             elem.css('position', 'absolute');
             $(document).css('overflow', 'hidden');
@@ -266,7 +336,6 @@ this.ngSlidesController = function(scope, elem, attr) {
         element.style.height = height + 'px';
 
         document.getElementsByClassName('slides')[0].style.zoom = scaleX;
-        document.getElementsByClassName('slide-buttons')[0].style.zoom = scaleX;
     }
 
     resize();
