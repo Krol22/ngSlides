@@ -43,8 +43,8 @@ var configuration = {
 
 ## Available animations
 
-⋅⋅* slide
-⋅⋅* fade
+* slide
+* fade
 
 ## Custom animations
 
@@ -92,11 +92,11 @@ Module exposes an basic API. To use it you need to pass an empty object to direc
 
 ### Available methods:
 
-⋅⋅* toggleToolbar()
-⋅⋅* toggleAutohide()
-⋅⋅* prevSlide()
-⋅⋅* fullscreen()
-⋅⋅* play()
-⋅⋅* pause()
-⋅⋅* loop()
-⋅⋅* nextSlide()
+* toggleToolbar()
+* toggleAutohide()
+* prevSlide()
+* fullscreen()
+* play()
+* pause()
+* loop()
+* nextSlide()
