@@ -34,7 +34,7 @@ this.templateString =
     '  <div ng-click="fullScreen()" class="slide-button full-screen"><i class="fa fa-window-maximize" aria-hidden="true"></i></div>' +
     '  <div ng-click="play()" class="slide-button play"><i class="fa fa-play" aria-hidden="true"></i></div>' +
     '  <div ng-click="pause()" class="slide-button pause"><i class="fa fa-pause" aria-hidden="true"></i></div>' +
-    '  <div ng-click="repeat()" class="slide-button repeat"><i class="fa fa-repeat" aria-hidden="true"></i></div>' +
+    '  <div ng-click="loop()" class="slide-button repeat"><i class="fa fa-repeat" aria-hidden="true"></i></div>' +
     '  <div ng-click="nextSlide()" class="slide-button next-slide"><i class="fa fa-angle-right" aria-hidden="true"></i></div>' +
     '</div>'
 
@@ -82,7 +82,7 @@ this.ngSlidesController = function(scope, elem, attr) {
         if(!config.customAnimation)
             throw new Error('You must provide customAnimation object in your config to use custom animation!');
 
-        predeclaredAnimations.push(config.customAnimation)
+        predeclaredAnimations.custom = config.customAnimation;
     }
 
     /***    Init key bindings    ***/

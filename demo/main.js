@@ -9,7 +9,7 @@ angular.module('slidesDemo', ['ngSlides'])
             timeout: 5000,
             animation: 'fade',
             toolbarVisibility: $scope.toolbarVisibility,
-            toolbarAutohide: true,
+            toolbarAutohide: false,
             autoStart: false,
         };
 

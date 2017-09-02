@@ -6,12 +6,18 @@
 html,
 body {
     min-height: 100%;
-    background-color: #777;
 }
 
-main {
+section {
     margin: 20px auto;
-    max-width: 80%;
+}
+
+button {
+    min-width: 130px;
+}
+
+.buttons {
+    text-align: center;
 }
 
 .directive-fullscreen {
