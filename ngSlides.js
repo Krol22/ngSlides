@@ -63,7 +63,7 @@ function ngSlides(_interval, _timeout) {
 this.ngSlidesController = function(scope, elem, attr) {
     var config = scope.config;
 
-    var isPlaying = true;
+    var isPlaying = config.autoStart;
     var completed = true;
     var usedButtonsCodes = [
         39, 37, 32, 70
@@ -84,6 +84,8 @@ this.ngSlidesController = function(scope, elem, attr) {
 
         predeclaredAnimations.push(config.customAnimation)
     }
+
+    /***    Init key bindings    ***/
 
     elem.attr('tabindex', '0');
 
@@ -136,6 +138,11 @@ this.ngSlidesController = function(scope, elem, attr) {
         return slides[index].tagName === 'NG-SLIDE';
     });
 
+    var toolbar = elem.find('.ng-slide-buttons');
+    if(config.toolbarAutohide){
+        setupToolbarEvents();
+    }
+
     /**** Init transitions on slides ****/
 
     var transitionEnterCss = '';
@@ -179,6 +186,7 @@ this.ngSlidesController = function(scope, elem, attr) {
     scope.ngSlidesApi.nextSlide = goToNextSlide;
     scope.ngSlidesApi.fullscreen = toggleFullScreen;
     scope.ngSlidesApi.loop = toggleLoop;
+    scope.ngSlidesApi.toggleAutohide = toggleAutohide;
 
     scope.prevSlide = goToPrevSlide;
     scope.fullScreen = toggleFullScreen;
@@ -186,6 +194,20 @@ this.ngSlidesController = function(scope, elem, attr) {
     scope.pause = pause;
     scope.loop = toggleLoop;
     scope.nextSlide = goToNextSlide;
+
+    /*** Init button states ***/
+
+    if(config.autoStart){
+        playButton.css('display', 'none');
+        pauseButton.css('display', 'inline-block');
+    } else {
+        playButton.css('display', 'inline-block');
+        pauseButton.css('display', 'none');
+    }
+
+    toggleLoop();
+
+    /*** Init click events ***/
 
     function play(){
         isPlaying = true;
@@ -292,7 +314,9 @@ this.ngSlidesController = function(scope, elem, attr) {
         }, maxTimeLeave);
     }
 
-    startSlideShow();
+    if(config.autoStart){
+        startSlideShow();
+    }
 
     function startSlideShow() {
         nextSlidePromise = $interval(goToNextSlide, config.timeout);
@@ -339,6 +363,30 @@ this.ngSlidesController = function(scope, elem, attr) {
     }
 
     resize();
+
+    function toggleAutohide(){
+        config.toolbarAutohide = !config.toolbarAutohide;
+        if(!config.toolbarAutohide){
+            toolbar.removeClass('ng-slide-buttons-hidden');
+            toolbar.off('mouseleave');
+            toolbar.off('mouseenter');
+        } else {
+            setupToolbarEvents();
+        }
+
+    }
+
+    function setupToolbarEvents() {
+        toolbar.on('mouseenter', function() {
+            toolbar.removeClass('ng-slide-buttons-hidden');
+        });
+
+        toolbar.on('mouseleave', function() {
+            toolbar.addClass('ng-slide-buttons-hidden');
+        });
+
+        toolbar.addClass('ng-slide-buttons-hidden');
+    }
 
 };
 

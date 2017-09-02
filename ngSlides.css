@@ -40,14 +40,22 @@ main {
   width: 100%;
 }
 .ng-slide-buttons {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin-bottom: 10px;
-  text-align: center;
-  user-select: none;
+    transition: .5s bottom ease-in-out;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 0px;
+    text-align: center;
+    user-select: none;
+    padding-top: 70px;
 }
+
+.ng-slide-buttons-hidden {
+    bottom: -50px;
+}
+
+
 .slide-button {
   display: inline-block;
   font-size: 25px;

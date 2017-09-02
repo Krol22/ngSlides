@@ -9,6 +9,8 @@ angular.module('slidesDemo', ['ngSlides'])
             timeout: 5000,
             animation: 'fade',
             toolbarVisibility: $scope.toolbarVisibility,
+            toolbarAutohide: true,
+            autoStart: false,
         };
 
         $scope.toogleToolbar = function() {
