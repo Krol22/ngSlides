@@ -28,14 +28,14 @@ var predeclaredAnimations = {
 };
 
 this.templateString =
-    '<div class="slides" ng-transclude></div>' +
+    '<div class="ng-slides" ng-transclude></div>' +
     '<div class="ng-slide-buttons" ng-show="config.toolbarVisibility">' +
-    '  <div ng-click="prevSlide()" class="slide-button prev-slide"><i class="fa fa-angle-left" aria-hidden="true"></i></div>' +
-    '  <div ng-click="fullScreen()" class="slide-button full-screen"><i class="fa fa-window-maximize" aria-hidden="true"></i></div>' +
-    '  <div ng-click="play()" class="slide-button play"><i class="fa fa-play" aria-hidden="true"></i></div>' +
-    '  <div ng-click="pause()" class="slide-button pause"><i class="fa fa-pause" aria-hidden="true"></i></div>' +
-    '  <div ng-click="loop()" class="slide-button repeat"><i class="fa fa-repeat" aria-hidden="true"></i></div>' +
-    '  <div ng-click="nextSlide()" class="slide-button next-slide"><i class="fa fa-angle-right" aria-hidden="true"></i></div>' +
+    '  <div ng-click="prevSlide()" class="ng-slide-button ng-slide-button-prev-slide"><i class="fa fa-angle-left" aria-hidden="true"></i></div>' +
+    '  <div ng-click="fullScreen()" class="ng-slide-button ng-slide-button-full-screen"><i class="fa fa-window-maximize" aria-hidden="true"></i></div>' +
+    '  <div ng-click="play()" class="ng-slide-button ng-slide-button-play"><i class="fa fa-play" aria-hidden="true"></i></div>' +
+    '  <div ng-click="pause()" class="ng-slide-button ng-slide-button-pause"><i class="fa fa-pause" aria-hidden="true"></i></div>' +
+    '  <div ng-click="loop()" class="ng-slide-button ng-slide-button-repeat"><i class="fa fa-repeat" aria-hidden="true"></i></div>' +
+    '  <div ng-click="nextSlide()" class="ng-slide-button ng-slide-button-next-slide"><i class="fa fa-angle-right" aria-hidden="true"></i></div>' +
     '</div>'
 
 
@@ -158,7 +158,7 @@ this.ngSlidesController = function(scope, elem, attr) {
     transitionLeaveCss = transitionLeaveCss.slice(0, -2);
 
     for(var index = 0; index < slides.length; index++){
-        $(slides[index]).addClass('slide');
+        $(slides[index]).addClass('ng-slide');
 
         if(index === currentSlide)
             continue;
@@ -173,12 +173,12 @@ this.ngSlidesController = function(scope, elem, attr) {
 
     /**** Init buttons ****/
 
-    var playButton = elem.find('.play');
-    var pauseButton = elem.find('.pause');
-    var nextSlide = elem.find('.next-slide');
-    var prevSlide = elem.find('.prev-slide');
-    var fullScreen = elem.find('.full-screen');
-    var loopButton = elem.find('.repeat');
+    var playButton = elem.find('.ng-slide-button-play');
+    var pauseButton = elem.find('.ng-slide-button-pause');
+    var nextSlide = elem.find('.ng-slide-button-next-slide');
+    var prevSlide = elem.find('.ng-slide-button-prev-slide');
+    var fullScreen = elem.find('.ng-slide-button-full-screen');
+    var loopButton = elem.find('.ng-slide-button-repeat');
 
     scope.ngSlidesApi.pause = pause;
     scope.ngSlidesApi.play = play;
@@ -230,9 +230,9 @@ this.ngSlidesController = function(scope, elem, attr) {
     function toggleLoop() {
         config.loop = !config.loop;
         if(config.loop){
-            loopButton.addClass('active');
+            loopButton.addClass('ng-slide-button-active');
         } else {
-            loopButton.removeClass('active');
+            loopButton.removeClass('ng-slide-button-active');
         }
     }
 
@@ -337,12 +337,12 @@ this.ngSlidesController = function(scope, elem, attr) {
         if(!document.webkitIsFullScreen){
             elem.css('position', 'relative');
             $(document).css('overflow', 'auto');
-            elem.removeClass('directive-fullscreen');
+            elem.removeClass('ng-slides-directive-fullscreen');
             resize();
         } else {
             elem.css('position', 'absolute');
             $(document).css('overflow', 'hidden');
-            elem.addClass('directive-fullscreen');
+            elem.addClass('ng-slides-directive-fullscreen');
         }
     }
 
@@ -359,7 +359,7 @@ this.ngSlidesController = function(scope, elem, attr) {
 
         element.style.height = height + 'px';
 
-        document.getElementsByClassName('slides')[0].style.zoom = scaleX;
+        document.getElementsByClassName('ng-slides')[0].style.zoom = scaleX;
     }
 
     resize();
@@ -389,8 +389,5 @@ this.ngSlidesController = function(scope, elem, attr) {
     }
 
 };
-
-
-
 
 })();

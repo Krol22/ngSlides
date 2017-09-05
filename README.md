@@ -100,3 +100,18 @@ Module exposes an basic API. To use it you need to pass an empty object to direc
 * pause()
 * loop()
 * nextSlide()
+
+## style
+
+There are available some basic classes for slides:
+
+* title-slide
+    * title
+    * sub-title
+* content-slide
+    * title
+    * content
+
+* two-co
+
+### [Demo page](https://krol22.github.io/ngSlides)

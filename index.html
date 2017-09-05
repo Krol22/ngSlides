@@ -15,7 +15,7 @@
 <body ng-app="slidesDemo">
     <main class="container" ng-controller="demoController">
         <section class="row">
-            <div class="directive" ng-slides="config" ng-slides-api="testApi">
+            <div class="ng-directive" ng-slides="config" ng-slides-api="testApi">
                 <ng-slide class="title-slide">
                     <div class="title"> Ng-slides </div>
                     <div class="sub-title"> Angular 1.x module for presentations </div>
@@ -55,6 +55,22 @@
                     <div class="content">Then set this animation as current animation
                         <pre>let currentAnimation = 'animationName';</pre>
                     </div>
+                </ng-slide>
+                <ng-slide class="slide title-slide">
+                     <div class="sub-title">There are some basic theme classes for your slides</div>
+                </ng-slide>
+                <ng-slide class="slide title-slide">
+                     <div class="title bordered">.title-slide .title</div>
+                     <div class="sub-title bordered">.sub-title</div>
+                </ng-slide>
+                <ng-slide class="slide content-slide">
+                     <div class="title bordered">.content-slide .title</div>
+                     <div class="content bordered max-height">.content</div>
+                </ng-slide>
+                <ng-slide class="slide two-columns-slide">
+                    <div class="title bordered">.two-columns-slide</div>
+                    <div class="col-1 bordered max-height">.col-1</div>
+                    <div class="col-2 bordered max-height">.col-2</div>
                 </ng-slide>
             </div>
         </section>
