@@ -1,7 +1,12 @@
 # ngSlides
 ## Angular 1.6 module for creating presentations on webpage.
 
-You can download this module directly from github page. And add it with CSS file directly to html page.
+To use this component you can download it directly from repository (repository probably will have newest version of this component) or using node package manager :
+
+```bash
+npm install ngslides
+```
+
 
 Dependencies: JQuery 3.2, Angular 1.6 and font awesome css.
 

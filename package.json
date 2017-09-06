@@ -1,5 +1,5 @@
 {
-  "name": "ng-slides",
+  "name": "ngslides",
   "version": "1.0.0",
   "description": "AngularJS 1.6 module for creating presentations on webpage",
   "main": "index.js",
@@ -13,9 +13,13 @@
     "slides",
     "presentations",
     "slide",
-    "presentation"
+    "presentation",
+    "ng-slide",
+    "ng-slides",
+    "ngSlide",
+    "ngSlides"
   ],
-  "author": "Karol Toruń",
+  "author": "Karol Toruń <krol22ee@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/krol22/ngSlides/issues"
