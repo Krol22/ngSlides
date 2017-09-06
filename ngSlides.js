@@ -350,7 +350,7 @@ this.ngSlidesController = function(scope, elem, attr) {
     }
 
     function selectSlide(slideNumber){
-        if(!completed) {
+        if(!completed || slideNumber === currentSlide) {
             return false;
         }
 

@@ -1,11 +1,8 @@
 {
-  "name": "ngslides",
-  "version": "0.0.1",
-  "description": "AngularJs 1.x module for creating presentations on webpage",
+  "name": "ng-slides",
+  "version": "1.0.0",
+  "description": "AngularJS 1.6 module for creating presentations on webpage",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/krol22/ngSlides.git"
@@ -23,5 +20,5 @@
   "bugs": {
     "url": "https://github.com/krol22/ngSlides/issues"
   },
-  "homepage": "https://github.com/krol22/ngSlides#readme"
+  "homepage": "https://krol22.github.io/ngSlides/"
 }
