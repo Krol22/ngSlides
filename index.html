@@ -25,8 +25,11 @@
                     <div class="content">
                          <ul>
                              <li>fade</li>
-                             <li>slide-left</li>
-                             <li>#tobedeveloped</li>
+                             <li>slideLeft</li>
+                             <li>slideRight</li>
+                             <li>slideDown</li>
+                             <li>slideUp</li>
+                             <li>cascade</li>
                              <li>custom slides</li>
                          </ul>
                      </div>
@@ -84,6 +87,14 @@
                 <button class="btn btn-default" ng-click="testApi.pause()"> Pause </button>
                 <button class="btn btn-default" ng-click="testApi.loop()"> Loop </button>
                 <button class="btn btn-default" ng-click="testApi.nextSlide()"> Next slide </button>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-md-12 form-inline buttons">
+                <div class="form-group">
+                    <input class="form-control" type="number" ng-model="slideNumber" min="0" max="7"/>
+                    <button class="btn btn-default" ng-click="selectSlide()"> Change slide! </button>
+                </div>
             </div>
         </section>
 

@@ -3,11 +3,12 @@ angular.module('slidesDemo', ['ngSlides'])
 
         $scope.testApi = {};
         $scope.toolbarVisibility = true;
+        $scope.slideNumber = 0;
 
         $scope.config = {
             loop: true,
             timeout: 5000,
-            animation: 'fade',
+            animation: 'cascade',
             toolbarVisibility: $scope.toolbarVisibility,
             toolbarAutohide: false,
             autoStart: false,
@@ -15,6 +16,10 @@ angular.module('slidesDemo', ['ngSlides'])
 
         $scope.toogleToolbar = function() {
             $scope.config.toolbarVisibility = !$scope.config.toolbarVisibility;
+        }
+
+        $scope.selectSlide = function() {
+            $scope.testApi.selectSlide($scope.slideNumber);
         }
 
     });

@@ -43,8 +43,13 @@ var configuration = {
 
 ## Available animations
 
-* slide
 * fade
+* slideLeft
+* slideRight
+* slideDown
+* slideUp
+* cascade
+* custom
 
 ## Custom animations
 
@@ -100,8 +105,11 @@ Module exposes an basic API. To use it you need to pass an empty object to direc
 * pause()
 * loop()
 * nextSlide()
+* selectSlide(Number): Boolean
 
-## style
+Warning! SelectSlide will change slide when current transition between slides is finished. This method returns false if slide cannot be changed in current moment otherwise it returns true.
+
+## Style
 
 There are available some basic classes for slides:
 
@@ -111,7 +119,9 @@ There are available some basic classes for slides:
 * content-slide
     * title
     * content
-
-* two-co
+* two-columns-slide
+    * title
+    * col-1
+    * col-2
 
 ### [Demo page](https://krol22.github.io/ngSlides)

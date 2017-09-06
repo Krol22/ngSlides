@@ -3,28 +3,54 @@
 var predeclaredAnimations = {
     fade: {
       animationEnter: {
-        transitions: [
-          { css: 'opacity 0.3s ease-in-out 0.5s', from: 0, to: 1 },
-        ],
+        transitions: [ { css: 'opacity 0.3s ease-in-out 0.5s', from: 0, to: 1 }, ],
       },
       animationLeave: {
-        transitions: [
-          { css: 'opacity 0.3s ease-in-out', from: 1, to: 0 },
-        ],
+        transitions: [ { css: 'opacity 0.3s ease-in-out', from: 1, to: 0 }, ],
       }
     },
-    slide: {
+    slideLeft: {
       animationEnter: {
-        transitions: [
-          { css: 'left 0.8s ease-in-out', from: '1700px', to: '0px' }
-        ],
+        transitions: [ { css: 'left 0.8s ease-in-out', from: '1700px', to: '0px' } ],
       },
       animationLeave: {
-        transitions: [
-         { css: 'left 0.8s ease-in-out', from: '0px', to: '-1700px' }
-        ],
+        transitions: [ { css: 'left 0.8s ease-in-out', from: '0px', to: '-1700px' } ],
+      }
+    },
+    slideRight: {
+        animationEnter: {
+            transitions: [ { css: 'left 0.8s ease-in-out', from: '-1700px', to: '0px' } ],
+        },
+        animationLeave: {
+            transitions: [ { css: 'left 0.8s ease-in-out', from: '0px', to: '1700px' } ],
+        }
+    },
+    slideDown: {
+        animationEnter: {
+            transitions: [ { css: 'top 0.8s ease-in-out', from: '-1700px', to: '0px' } ]
+        },
+        animationLeave: {
+            transitions: [ { css: 'top 0.8s ease-in-out', from: '0px', to: '1700px' } ],
+        }
+    },
+    slideUp: {
+        animationEnter: {
+            transitions: [ { css: 'top 0.8s ease-in-out', from: '1700px', to: '0px' } ]
+        },
+        animationLeave: {
+            transitions: [ { css: 'top 0.8s ease-in-out', from: '0px', to: '-1700px' } ],
+        }
+    },
+    cascade: {
+      animationEnter: {
+        transitions: [ { css: 'left 0.8s ease-in-out', from: '1700px', to: '0px' } ],
+      },
+      animationLeave: {
+        transitions: [ { css: 'opacity 0.5s ease-in-out', from: '1', to: '0' } ],
       }
     }
+
+
 };
 
 this.templateString =
@@ -187,6 +213,7 @@ this.ngSlidesController = function(scope, elem, attr) {
     scope.ngSlidesApi.fullscreen = toggleFullScreen;
     scope.ngSlidesApi.loop = toggleLoop;
     scope.ngSlidesApi.toggleAutohide = toggleAutohide;
+    scope.ngSlidesApi.selectSlide = selectSlide;
 
     scope.prevSlide = goToPrevSlide;
     scope.fullScreen = toggleFullScreen;
@@ -320,6 +347,19 @@ this.ngSlidesController = function(scope, elem, attr) {
 
     function startSlideShow() {
         nextSlidePromise = $interval(goToNextSlide, config.timeout);
+    }
+
+    function selectSlide(slideNumber){
+        if(!completed) {
+            return false;
+        }
+
+        if(slideNumber > 0 && slideNumber <= slides.length - 1){
+            switchToSlide(slideNumber);
+            return true;
+        } else {
+            throw new Error('No slide with number: ' + slideNumber);
+        }
     }
 
 
